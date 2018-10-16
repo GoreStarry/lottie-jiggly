@@ -1,0 +1,30 @@
+body {
+  background-color: #fff;
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+#lottie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: landscape) {
+  #lottie {
+    width: 100vmax;
+    height: auto;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  #lottie {
+    width: 60vh;
+    height: 100vh;
+  }
+}
+
+#markpen {
+  cursor: pointer;
+}
