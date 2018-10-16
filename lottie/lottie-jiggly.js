@@ -19,7 +19,7 @@ class AnimateJiggly {
 
   _handleClickMarkPen() {
     document.querySelector("#markpen").addEventListener("click", () => {
-      this._playSingingAndAngry();
+      this._playSinging();
     });
   }
 
@@ -27,16 +27,24 @@ class AnimateJiggly {
     this.anim.playSegments([0, 104], true);
   }
 
-  _playSingingAndAngry() {
+  _playSinging() {
     this.anim.addEventListener("loopComplete", () => {
-      this._onLoopComplete();
+      this._playAngry();
     });
-    this.anim.playSegments([105, 870], true);
+    this.anim.playSegments([[105, 522], [328, 522]], true);
   }
 
-  _onLoopComplete() {
+  _playAngry() {
+    this.anim.removeEventListener("loopComplete", this._playAngry);
+    this.anim.addEventListener("loopComplete", () => {
+      this._onComplete();
+    });
+    this.anim.playSegments([522, 870], true);
+  }
+
+  _onComplete() {
     this.anim.pause();
-    this.anim.removeEventListener("loopComplete", this._onLoopComplete);
+    this.anim.removeEventListener("loopComplete", this._onComplete);
     this._playEyeBlink();
   }
 }
